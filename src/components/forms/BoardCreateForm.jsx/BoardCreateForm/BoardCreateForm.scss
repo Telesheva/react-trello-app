@@ -1,0 +1,27 @@
+.createboard {
+  padding: 40px 0;
+  text-shadow: 1px 1px 2px gray;
+  color: #fff;
+  hr {
+    color: #fff;
+    margin: 20px 0;
+  }
+  &__header {
+    display: flex;
+    justify-content: space-around;
+    img:hover {
+      transform: scale(1.1) rotate(4.5deg);
+      transition: transform 0.2s ease-in;
+    }
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 165px;
+    p {
+      font-size: 14px;
+      font-weight: lighter;
+    }
+  }
+}
