@@ -1,0 +1,20 @@
+.task {
+  display: inline-flex;
+  justify-content: space-around;
+  padding: 15px 0;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 6px 6px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  text-decoration: none;
+  background-color: #caffde;
+  border-radius: 4.5px;
+  margin: 15px 10px;
+  &__text {
+    text-transform: uppercase;
+    color: #000000;
+    font-weight: 600;
+  }
+  &__done {
+    cursor: pointer;
+    font-size: 17px;
+    opacity: 0.4;
+  }
+}

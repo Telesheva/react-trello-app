@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./BoardCreateForm/BoardCreateForm.scss";
+import "./BoardCreateForm.scss";
 import Input from "../../common/Input/Input";
 import Button from "../../common/Button/Button";
 import close from "../../../assets/images/close.png";

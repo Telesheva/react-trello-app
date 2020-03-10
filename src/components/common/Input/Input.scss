@@ -4,7 +4,7 @@
   text-align: center;
   align-items: center;
   &__input {
-    padding: 11px 15px;
+    padding: 11px 23px;
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #cecece;
@@ -12,6 +12,9 @@
     background-color: #fff;
     &:focus {
       border: #00ffc5 1px solid;
+    }
+    &:hover {
+      cursor: text;
     }
   }
   &__error-message {

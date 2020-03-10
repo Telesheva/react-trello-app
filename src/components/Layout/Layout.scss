@@ -1,0 +1,14 @@
+.layout {
+  text-align: center;
+  margin-top: 30px;
+  &__icon {
+    width: 100px;
+    height: 100px;
+    transition: transform 0.2s ease-in;
+    &:hover {
+      transform: scale(1.1) rotate(-4.5deg);
+      transition: transform 0.2s ease-in;
+      cursor: pointer;
+    }
+  }
+}

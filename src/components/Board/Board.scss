@@ -1,0 +1,21 @@
+.board {
+  &__title {
+    color: #fff;
+    text-shadow: 1px 1px 2px gray;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    background-color: #9fe7a4;
+    text-shadow: 1px 1px 2px gray;
+    box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.5);
+    padding: 20px 30px;
+    width: 250px;
+    word-wrap: break-word;
+    margin-left: 4%;
+  }
+  &__tasks {
+    display: grid;
+    grid-template-columns: repeat(6, 0.23fr);
+    grid-gap: 50px 40px;
+    margin: 60px 0 30px 4%;
+  }
+}
