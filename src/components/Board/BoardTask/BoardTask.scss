@@ -15,4 +15,10 @@
     margin: 10px 0 15px 0;
     opacity: 0.25;
   }
+  &__no-tasks {
+    color: limegreen;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding-top: 15px;
+  }
 }

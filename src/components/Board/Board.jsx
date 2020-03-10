@@ -32,7 +32,7 @@ const Board = props => {
             curBoard.lists.map(list => {
               return (
                 <li key={list.id}>
-                  <BoardTask listTitle={list.title} />
+                  <BoardTask list={list} tasks={list.tasks} boardID={id} />
                 </li>
               );
             })}
