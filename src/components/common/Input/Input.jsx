@@ -17,10 +17,6 @@ const Input = ({
 }) => {
   const classes = [className, "input-wrap__input"];
 
-  if (!valid) {
-    classes.push("invalid");
-  }
-
   return (
     <div className="input-wrap">
       <input
@@ -34,8 +30,7 @@ const Input = ({
         required={required}
         name={name}
         placeholder={placeholder}
-        className={`${className} input-wrap__input`}
-        valid={valid}
+        className={classes.join(" ")}
       />
       <span className="input-wrap__error-message">{errorMessage}</span>
     </div>

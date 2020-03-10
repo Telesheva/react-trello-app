@@ -10,7 +10,7 @@ import { addBoardList } from "../../store/actions/board";
 const Board = props => {
   const { boards } = useSelector(state => state.board);
   const [isAddedList, setIsAddedList] = useState(false);
-  const [listTitle, setIsListTitle] = useState("");
+  const [listTitle, setListTitle] = useState();
   const dispatch = useDispatch();
 
   const id = props.match.params.id;
@@ -18,8 +18,9 @@ const Board = props => {
 
   const checkEnterKeyPressed = event => {
     if (event.key === "Enter") {
-      dispatch(addBoardList(id, listTitle));
+      if (listTitle) dispatch(addBoardList(id, listTitle));
       event.target.value = "";
+      setListTitle("");
     }
   };
 
@@ -54,7 +55,8 @@ const Board = props => {
                 type="text"
                 placeholder="Enter list name"
                 onKeyPress={checkEnterKeyPressed}
-                onChange={event => setIsListTitle(event.target.value)}
+                onChange={event => setListTitle(event.target.value)}
+                valid={listTitle}
               />
             </div>
           )}

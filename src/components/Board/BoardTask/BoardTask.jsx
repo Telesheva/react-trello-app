@@ -11,13 +11,24 @@ const BoardTask = ({ list, tasks, boardID }) => {
 
   const checkIfEnterKeyPressed = event => {
     if (event.key === "Enter") {
-      dispatch(addBoardTask(boardID, list.id, taskTitle));
+      if (taskTitle) dispatch(addBoardTask(boardID, list.id, taskTitle));
       event.target.value = "";
+      setTaskTitle("");
     }
   };
 
+  const onDragOverHandler = e => {
+    console.log(e);
+  };
+
+  const onTaskDrop = e => {};
+
   return (
-    <div className="boardtask">
+    <div
+      className="boardtask"
+      onDragOver={e => onDragOverHandler(e)}
+      onDrop={e => onTaskDrop(e, list.id)}
+    >
       <p className="boardtask__text">{list.title}</p>
       <hr />
       <Input
@@ -31,7 +42,7 @@ const BoardTask = ({ list, tasks, boardID }) => {
           return (
             <Task
               id={task.id}
-              value={task.title}
+              title={task.title}
               status={task.status}
               listID={list.id}
               boardID={boardID}

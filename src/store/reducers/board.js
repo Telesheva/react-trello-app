@@ -68,7 +68,6 @@ export default function boardReducer(state = initialState, action) {
       const cList = cBoard.lists.find(list => list.id === action.listID);
       let cTask = cList.tasks.find(task => task.id === action.taskID);
       cTask.status = action.status;
-      console.log(cTask);
       return { ...state };
     default:
       return state;
