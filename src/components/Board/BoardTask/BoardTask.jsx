@@ -3,12 +3,12 @@ import "./BoardTask.scss";
 import Input from "../../common/Input/Input";
 import Task from "./Task/Task";
 
-const BoardTask = props => {
+const BoardTask = ({ listTitle }) => {
   return (
     <div className="boardtask">
-      <p className="boardtask__text">Test</p>
+      <p className="boardtask__text">{listTitle}</p>
       <hr />
-      <Input type="text" />
+      <Input type="text" placeholder="Enter your task" />
       <Task value="test task" />
     </div>
   );

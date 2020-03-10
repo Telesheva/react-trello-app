@@ -4,6 +4,7 @@ import "./Input.scss";
 const Input = ({
   value,
   onChange,
+  onKeyPress,
   onBlur,
   type,
   className,
@@ -25,6 +26,7 @@ const Input = ({
       <input
         type={type}
         onChange={onChange}
+        onKeyPress={onKeyPress}
         onBlur={onBlur}
         value={value}
         defaultValue={defaultValue}

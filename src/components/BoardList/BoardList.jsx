@@ -2,51 +2,41 @@ import React, { useState } from "react";
 import "./BoardList.scss";
 import BoardCreateForm from "../forms/BoardCreateForm/BoardCreateForm";
 import Layout from "../Layout/Layout";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const BoardList = props => {
-  const [isCreateFormOpen, setIsCreateFormOpen] = useState();
+  const [isCreateFormOpen, setIsCreateFormOpen] = useState(false);
+  const { boards } = useSelector(state => state.board);
+  const history = useHistory();
 
-  const boards = [
-    {
-      id: 1,
-      title: "Meetings"
-    },
-    {
-      id: 2,
-      title: "Project 1"
-    },
-    {
-      id: 3,
-      title: "Project 2"
-    },
-    {
-      id: 4,
-      title: "Project 3"
-    },
-    {
-      id: 4,
-      title: "Project 3"
-    }
-  ];
   return (
     <Layout>
       <ul className="boardlist">
-        <div
-          className="boardlist__create"
-          onClick={() => {
-            setIsCreateFormOpen(true);
-            console.log(isCreateFormOpen);
-          }}
-        >
-          {isCreateFormOpen ? (
-            <BoardCreateForm isShowed={isCreateFormOpen} />
-          ) : (
+        {!isCreateFormOpen ? (
+          <div
+            className="boardlist__create"
+            onClick={() => {
+              setIsCreateFormOpen(true);
+            }}
+          >
             <h3 className="boardlist__item_text">Create a new board...</h3>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="boardlist__create">
+            <BoardCreateForm
+              isShowed={isCreateFormOpen}
+              setIsShowed={setIsCreateFormOpen}
+            />
+          </div>
+        )}
         {boards.map(board => {
           return (
-            <li className="boardlist__item" key={board.id}>
+            <li
+              className="boardlist__item"
+              key={board.id}
+              onClick={() => history.push(`/board/${board.id}`)}
+            >
               <p className="boardlist__item_text">{board.title}</p>
             </li>
           );
