@@ -56,7 +56,6 @@ const Board = props => {
                 placeholder="Enter list name"
                 onKeyPress={checkEnterKeyPressed}
                 onChange={event => setListTitle(event.target.value)}
-                valid={listTitle}
               />
             </div>
           )}

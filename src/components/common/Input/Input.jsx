@@ -12,8 +12,7 @@ const Input = ({
   name,
   defaultValue,
   errorMessage,
-  required,
-  valid
+  required
 }) => {
   const classes = [className, "input-wrap__input"];
 
@@ -26,13 +25,11 @@ const Input = ({
         onBlur={onBlur}
         value={value}
         defaultValue={defaultValue}
-        errormessage={errorMessage}
         required={required}
         name={name}
         placeholder={placeholder}
         className={classes.join(" ")}
       />
-      <span className="input-wrap__error-message">{errorMessage}</span>
     </div>
   );
 };
