@@ -10,7 +10,7 @@ const Task = ({ id, title, status, listID, boardID }) => {
     event.dataTransfer.setData("task_id", id);
     event.dataTransfer.setData("task_title", title);
     event.dataTransfer.setData("task_status", status);
-    event.dataTransfer.setData("initialListID", listID);
+    event.dataTransfer.setData("initial_listid", listID);
   };
 
   return (

@@ -30,7 +30,7 @@ const BoardTask = ({ list, tasks, boardID }) => {
       title: e.dataTransfer.getData("task_title"),
       status: e.dataTransfer.getData("task_status")
     };
-    const initialListID = e.dataTransfer.getData("initialListID");
+    const initialListID = e.dataTransfer.getData("initial_listid");
     dispatch(addTaskToAnotherList(task, listID, initialListID, boardID));
   };
 

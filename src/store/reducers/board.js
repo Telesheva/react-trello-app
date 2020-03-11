@@ -90,7 +90,9 @@ export default function boardReducer(state = initialState, action) {
         list => list.id === action.initialListID
       );
       if (!list.tasks.includes(action.task)) list.tasks.push(action.task);
-      const taskIndex = list.tasks.findIndex(task => task.id === action.taskID);
+      const taskIndex = initialList.tasks.findIndex(
+        task => task.id === action.task.id
+      );
       initialList.tasks.splice(taskIndex, 1);
       return { ...state };
     default:

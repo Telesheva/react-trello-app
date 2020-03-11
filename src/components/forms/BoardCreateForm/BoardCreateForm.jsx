@@ -7,12 +7,13 @@ import { useDispatch } from "react-redux";
 import { createBoard } from "../../../store/actions/board";
 
 const BoardCreateForm = ({ onSubmit, onInput, isShowed, setIsShowed }) => {
-  const [boardTitle, setBoardTitle] = useState();
+  const [boardTitle, setBoardTitle] = useState("");
   const dispatch = useDispatch();
 
   const submitHandler = event => {
     event.preventDefault();
     dispatch(createBoard(boardTitle));
+    setBoardTitle("");
   };
 
   return (
@@ -24,13 +25,14 @@ const BoardCreateForm = ({ onSubmit, onInput, isShowed, setIsShowed }) => {
             <img src={close} alt="close" onClick={() => setIsShowed(false)} />
           </div>
           <hr />
-          <form
-            onSubmit={submitHandler}
-            onInput={event => setBoardTitle(event.target.value)}
-            className="createboard__form"
-          >
+          <form onSubmit={submitHandler} className="createboard__form">
             <p>What shall we call the board?</p>
-            <Input type="text" required="required" />
+            <Input
+              type="text"
+              required="required"
+              value={boardTitle}
+              onChange={event => setBoardTitle(event.target.value)}
+            />
             <div className="createboard__form__btns">
               <Button
                 type="button"

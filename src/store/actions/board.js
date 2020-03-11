@@ -12,7 +12,8 @@ export function createBoard(title) {
     type: ADD_BOARD,
     board: {
       id: uuidv4(),
-      title
+      title,
+      lists: []
     }
   };
 }
