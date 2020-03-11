@@ -2,7 +2,8 @@ import {
   ADD_BOARD,
   ADD_BOARD_LIST,
   ADD_BOARD_TASK,
-  CHANGE_TASK_STATUS
+  CHANGE_TASK_STATUS,
+  ADD_TASK_TO_ANOTHER_LIST
 } from "./actionTypes";
 import { v4 as uuidv4 } from "uuid";
 
@@ -21,9 +22,10 @@ export function addBoardList(boardID, title) {
     type: ADD_BOARD_LIST,
     list: {
       id: uuidv4(),
-      title
+      title,
+      tasks: []
     },
-    id: Number(boardID)
+    id: boardID
   };
 }
 
@@ -35,7 +37,7 @@ export function addBoardTask(boardID, listID, title) {
       title,
       status: "in progress"
     },
-    boardID: Number(boardID),
+    boardID,
     listID
   };
 }
@@ -44,8 +46,18 @@ export function changeTaskStatus(boardID, listID, taskID, status) {
   return {
     type: CHANGE_TASK_STATUS,
     status,
-    boardID: Number(boardID),
+    boardID,
     listID,
     taskID
+  };
+}
+
+export function addTaskToAnotherList(task, listID, initialListID, boardID) {
+  return {
+    type: ADD_TASK_TO_ANOTHER_LIST,
+    task,
+    listID,
+    initialListID,
+    boardID
   };
 }

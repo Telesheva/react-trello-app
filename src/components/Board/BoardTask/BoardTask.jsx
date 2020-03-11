@@ -3,7 +3,10 @@ import "./BoardTask.scss";
 import Input from "../../common/Input/Input";
 import Task from "./Task/Task";
 import { useDispatch } from "react-redux";
-import { addBoardTask } from "../../../store/actions/board";
+import {
+  addBoardTask,
+  addTaskToAnotherList
+} from "../../../store/actions/board";
 
 const BoardTask = ({ list, tasks, boardID }) => {
   const dispatch = useDispatch();
@@ -18,10 +21,18 @@ const BoardTask = ({ list, tasks, boardID }) => {
   };
 
   const onDragOverHandler = e => {
-    console.log(e);
+    e.preventDefault();
   };
 
-  const onTaskDrop = e => {};
+  const onTaskDrop = (e, listID) => {
+    const task = {
+      id: e.dataTransfer.getData("task_id"),
+      title: e.dataTransfer.getData("task_title"),
+      status: e.dataTransfer.getData("task_status")
+    };
+    const initialListID = e.dataTransfer.getData("initialListID");
+    dispatch(addTaskToAnotherList(task, listID, initialListID, boardID));
+  };
 
   return (
     <div
@@ -37,7 +48,7 @@ const BoardTask = ({ list, tasks, boardID }) => {
         onKeyPress={checkIfEnterKeyPressed}
         onChange={event => setTaskTitle(event.target.value)}
       />
-      {tasks ? (
+      {tasks.length > 0 ? (
         tasks.map(task => {
           return (
             <Task

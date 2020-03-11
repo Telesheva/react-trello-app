@@ -6,17 +6,18 @@ import { changeTaskStatus } from "../../../../store/actions/board";
 const Task = ({ id, title, status, listID, boardID }) => {
   const dispatch = useDispatch();
 
+  const onTaskDragStart = event => {
+    event.dataTransfer.setData("task_id", id);
+    event.dataTransfer.setData("task_title", title);
+    event.dataTransfer.setData("task_status", status);
+    event.dataTransfer.setData("initialListID", listID);
+  };
+
   return (
     <div
       className={status === "done" ? "task task__done" : "task"}
       draggable
-      onDragStart={(event, id, title, status) => {
-        console.log(title);
-        event.dataTransfer.setData("id", id);
-        event.dataTransfer.setData("title", title);
-        event.dataTransfer.setData("id", status);
-        console.log(event.dataTransfer);
-      }}
+      onDragStart={onTaskDragStart}
     >
       <p className="task__text">{title}</p>
       <p
