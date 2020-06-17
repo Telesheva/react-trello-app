@@ -4,7 +4,7 @@ import Input from "../../common/Input/Input";
 import Button from "../../common/Button/Button";
 import close from "../../../assets/images/close.png";
 import { useDispatch } from "react-redux";
-import { createBoard } from "../../../store/actions/board";
+import { addBoardStart } from "../../../store/board/actions";
 
 const BoardCreateForm = ({ onSubmit, onInput, isShowed, setIsShowed }) => {
   const [boardTitle, setBoardTitle] = useState("");
@@ -12,7 +12,7 @@ const BoardCreateForm = ({ onSubmit, onInput, isShowed, setIsShowed }) => {
 
   const submitHandler = event => {
     event.preventDefault();
-    dispatch(createBoard(boardTitle));
+    dispatch(addBoardStart(boardTitle));
     setBoardTitle("");
   };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Task.scss";
 import { useDispatch } from "react-redux";
-import { changeTaskStatus } from "../../../../store/actions/board";
+import { changeTaskStatus } from "../../../../store/board/actions";
 
 const Task = ({ id, title, status, listID, boardID }) => {
   const dispatch = useDispatch();

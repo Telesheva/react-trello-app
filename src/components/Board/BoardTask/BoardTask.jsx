@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import {
   addBoardTask,
   addTaskToAnotherList
-} from "../../../store/actions/board";
+} from "../../../store/board/actions";
 
 const BoardTask = ({ list, tasks, boardID }) => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import BoardList from "./components/BoardList/BoardList";
-import Board from "./components/Board/Board";
+import BoardList from "../components/BoardList/BoardList";
+import Board from "../components/Board/Board";
 
 export default function Routes() {
   return (
