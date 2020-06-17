@@ -59,6 +59,23 @@ export default function boardReducer(state = initialState, action) {
         isLoading: false,
         error: action.payload
       };
+    case types.DELETE_BOARD_START:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case types.DELETE_BOARD_SUCCESS:
+      return {
+        ...state,
+        boards: action.payload,
+        isLoading: false
+      };
+    case types.DELETE_BOARD_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
     case types.ADD_BOARD_LIST:
       const curBoard = state.boards.find(board => board.id === action.id);
       curBoard.lists.push(action.list);

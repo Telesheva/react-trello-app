@@ -15,7 +15,6 @@ const Board = props => {
   const dispatch = useDispatch();
 
   const id = props.match.params.id;
-  //const curBoard = boards.find(board => board.id === id);
 
   const onMount = () => {
     dispatch(fetchBoardByIdStart(id));

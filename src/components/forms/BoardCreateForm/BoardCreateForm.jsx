@@ -6,7 +6,7 @@ import close from "../../../assets/images/close.png";
 import { useDispatch } from "react-redux";
 import { addBoardStart } from "../../../store/board/actions";
 
-const BoardCreateForm = ({ onSubmit, onInput, isShowed, setIsShowed }) => {
+const BoardCreateForm = ({ isShowed, setIsShowed }) => {
   const [boardTitle, setBoardTitle] = useState("");
   const dispatch = useDispatch();
 

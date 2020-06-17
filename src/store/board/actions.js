@@ -63,6 +63,27 @@ export function addBoardError(payload) {
   };
 }
 
+export function deleteBoardStart(payload) {
+  return {
+    type: types.ADD_BOARD_START,
+    payload
+  }
+}
+
+export function deleteBoardSuccess(payload) {
+  return {
+    type: types.ADD_BOARD_SUCCESS,
+    payload
+  };
+}
+
+export function deleteBoardError(payload) {
+  return {
+    type: types.ADD_BOARD_ERROR,
+    payload
+  };
+}
+
 export function addBoardList(boardID, title) {
   return {
     type: types.ADD_BOARD_LIST,

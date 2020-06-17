@@ -11,6 +11,10 @@ export const addBoardQuery = async (title) => {
   return newBoard;
 }
 
+export const deleteBoardQuery = async id => {
+
+}
+
 export const fetchBoardsQuery = async () => {
   const {data} = await axios.get('/boards.json');
   return Object.values(data);
