@@ -5,7 +5,7 @@ import BoardTask from './BoardTask/BoardTask';
 import { useSelector, useDispatch } from 'react-redux';
 import Input from '../common/Input/Input';
 import closeImg from '../../assets/images/close-pic.png';
-import { addBoardList, fetchBoardByIdStart } from '../../store/board/actions';
+import { addListStart, fetchBoardByIdStart } from '../../store/board/actions';
 import Loader from '../common/Loader/Loader';
 
 const Board = props => {
@@ -24,7 +24,7 @@ const Board = props => {
 
   const checkEnterKeyPressed = event => {
     if (event.key === 'Enter') {
-      if (listTitle) dispatch(addBoardList(id, listTitle));
+      if (listTitle) dispatch(addListStart(id, listTitle));
       event.target.value = '';
       setListTitle('');
     }

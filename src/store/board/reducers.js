@@ -76,6 +76,23 @@ export default function boardReducer(state = initialState, action) {
         isLoading: false,
         error: action.payload
       };
+    case types.ADD_LIST_START:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case types.ADD_LIST_SUCCESS:
+      return {
+        ...state,
+        board: action.payload,
+        isLoading: false
+      };
+    case types.ADD_LIST_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
     case types.ADD_BOARD_LIST:
       const curBoard = state.boards.find(board => board.id === action.id);
       curBoard.lists.push(action.list);

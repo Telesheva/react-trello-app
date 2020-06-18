@@ -20,50 +20,52 @@ const BoardList = () => {
 
   const onDeleteBtnClick = id => {
     dispatch(deleteBoardStart(id));
-  }
+  };
 
   useEffect(onMount, []);
 
   return (
     <Layout>
       {!isLoading ?
-        <ul className="boardlist">
-          {!isCreateFormOpen ? (
-            <div
-              className="boardlist__create"
-              onClick={() => {
-                setIsCreateFormOpen(true);
-              }}
-            >
-              <h3 className="boardlist__create_text">Create a new board...</h3>
-            </div>
-          ) : (
-            <div className="boardlist__create">
-              <BoardCreateForm
-                isShowed={isCreateFormOpen}
-                setIsShowed={setIsCreateFormOpen}
-              />
-            </div>
-          )}
-          {boards && boards.map(board => {
-            return (
-              <li
-                className="boardlist__item"
-                key={board.id}
-                onClick={() => history.push(`/board/${board.id}`)}
+        <>
+          {!boards.length ? <h2>You have no boards yet...</h2> : null}
+          <ul className="boardlist">
+            {!isCreateFormOpen ? (
+              <div
+                className="boardlist__create"
+                onClick={() => {
+                  setIsCreateFormOpen(true);
+                }}
               >
-                <div className="close">
-                  <img
-                    src={closeImg}
-                    alt="close-pic"
-                    onClick={() => onDeleteBtnClick(board.id)}
-                  />
-                </div>
-                <p>{board.title}</p>
-              </li>
-            );
-          })}
-        </ul>
+                <h3 className="boardlist__create_text">Create a new board...</h3>
+              </div>
+            ) : (
+              <div className="boardlist__create">
+                <BoardCreateForm
+                  isShowed={isCreateFormOpen}
+                  setIsShowed={setIsCreateFormOpen}
+                />
+              </div>
+            )}
+            {boards && boards.map(board => {
+              return (
+                <li
+                  className="boardlist__item"
+                  key={board.id}
+                >
+                  <div className="close">
+                    <img
+                      src={closeImg}
+                      alt="close-pic"
+                      onClick={() => onDeleteBtnClick(board.id)}
+                    />
+                  </div>
+                  <p onClick={() => history.push(`/board/${board.id}`)}>{board.title}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </>
         : <Loader/>
       }
     </Layout>

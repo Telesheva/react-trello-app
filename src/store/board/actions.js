@@ -65,21 +65,42 @@ export function addBoardError(payload) {
 
 export function deleteBoardStart(payload) {
   return {
-    type: types.ADD_BOARD_START,
+    type: types.DELETE_BOARD_START,
     payload
   }
 }
 
 export function deleteBoardSuccess(payload) {
   return {
-    type: types.ADD_BOARD_SUCCESS,
+    type: types.DELETE_BOARD_SUCCESS,
     payload
   };
 }
 
 export function deleteBoardError(payload) {
   return {
-    type: types.ADD_BOARD_ERROR,
+    type: types.DELETE_BOARD_ERROR,
+    payload
+  };
+}
+
+export function addListStart(payload) {
+  return {
+    type: types.ADD_LIST_START,
+    payload
+  }
+}
+
+export function addListSuccess(payload) {
+  return {
+    type: types.ADD_LIST_SUCCESS,
+    payload
+  };
+}
+
+export function addListError(payload) {
+  return {
+    type: types.ADD_LIST_ERROR,
     payload
   };
 }

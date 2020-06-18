@@ -8,13 +8,14 @@ import {
   fetchBoardByIdError,
   fetchBoardByIdSuccess,
   deleteBoardSuccess,
-  deleteBoardError
+  deleteBoardError, addListSuccess, addListError
 } from './actions';
 import {
   addBoardQuery,
   deleteBoardQuery,
   fetchBoardByIdQuery,
-  fetchBoardsQuery
+  fetchBoardsQuery,
+  addListQuery
 } from '../../api/boardQueries';
 
 function* fetchBoards() {
@@ -57,9 +58,21 @@ function* deleteBoard({payload}) {
   }
 }
 
+function* addListToBoard({payload}) {
+  console.log('saga!');
+  try {
+    const response = yield call(addListQuery, payload);
+
+    yield put(addListSuccess(response));
+  } catch (error) {
+    yield put(addListError(error))
+  }
+}
+
 export default function* boardSaga() {
   yield takeLatest(types.FETCH_BOARDS_START, fetchBoards);
   yield takeLatest(types.FETCH_BOARD_BY_ID_START, fetchBoardById);
   yield takeEvery(types.ADD_BOARD_START, createBoard);
   yield takeEvery(types.DELETE_BOARD_START, deleteBoard);
+  yield takeEvery(types.ADD_LIST_START, addListToBoard);
 }
