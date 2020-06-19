@@ -9,7 +9,7 @@ import { addListStart, fetchBoardByIdStart } from '../../store/board/actions';
 import Loader from '../common/Loader/Loader';
 
 const Board = props => {
-  const {board, lists, isLoading} = useSelector(state => state.board);
+  const {board, lists, listTasks, isLoading} = useSelector(state => state.board);
   const [isAddedList, setIsAddedList] = useState(false);
   const [listTitle, setListTitle] = useState();
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ const Board = props => {
             lists.map(list => {
               return (
                 <li key={list.id}>
-                  <BoardTask list={list} tasks={list.tasks} boardID={id}/>
+                  <BoardTask list={list} tasks={listTasks && listTasks.tasks} listID={listTasks && listTasks.listID} boardID={id}/>
                 </li>
               );
             })}

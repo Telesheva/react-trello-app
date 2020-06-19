@@ -105,15 +105,24 @@ export function addListError(payload) {
   };
 }
 
-export function addBoardList(boardID, title) {
+export function deleteListStart(payload) {
   return {
-    type: types.ADD_BOARD_LIST,
-    list: {
-      id: uuidv4(),
-      title,
-      tasks: []
-    },
-    id: boardID
+    type: types.DELETE_LIST_START,
+    payload
+  }
+}
+
+export function deleteListSuccess(payload) {
+  return {
+    type: types.DELETE_LIST_SUCCESS,
+    payload
+  };
+}
+
+export function deleteListError(payload) {
+  return {
+    type: types.DELETE_LIST_ERROR,
+    payload
   };
 }
 
@@ -127,6 +136,27 @@ export function addBoardTask(boardID, listID, title) {
     },
     boardID,
     listID
+  };
+}
+
+export function addTaskStart(payload) {
+  return {
+    type: types.ADD_TASK_START,
+    payload
+  }
+}
+
+export function addTaskSuccess(payload) {
+  return {
+    type: types.ADD_TASK_SUCCESS,
+    payload
+  };
+}
+
+export function addTaskError(payload) {
+  return {
+    type: types.ADD_TASK_ERROR,
+    payload
   };
 }
 

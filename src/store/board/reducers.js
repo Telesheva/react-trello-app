@@ -4,6 +4,7 @@ const initialState = {
   boards: [],
   board: null,
   lists: [],
+  listTasks: null,
   isLoading: false,
   error: ''
 };
@@ -101,19 +102,40 @@ export default function boardReducer(state = initialState, action) {
         isLoading: false,
         error: action.payload
       };
-    case types.ADD_BOARD_LIST:
-      const curBoard = state.boards.find(board => board.id === action.id);
-      curBoard.lists.push(action.list);
-      return { ...state };
-    case types.ADD_BOARD_TASK:
-      const currentBoard = state.boards.find(
-        board => board.id === action.boardID
-      );
-      const currentList = currentBoard.lists.find(
-        list => list.id === action.listID
-      );
-      currentList.tasks.push(action.task);
-      return { ...state };
+    case types.DELETE_LIST_START:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case types.DELETE_LIST_SUCCESS:
+      return {
+        ...state,
+        lists: action.payload,
+        isLoading: false
+      };
+    case types.DELETE_LIST_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+    case types.ADD_TASK_START:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case types.ADD_TASK_SUCCESS:
+      return {
+        ...state,
+        listTasks: action.payload,
+        isLoading: false
+      };
+    case types.ADD_TASK_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
     case types.CHANGE_TASK_STATUS:
       const cBoard = state.boards.find(board => board.id === action.boardID);
       const cList = cBoard.lists.find(list => list.id === action.listID);

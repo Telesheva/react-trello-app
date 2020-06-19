@@ -4,18 +4,19 @@ import Input from "../../common/Input/Input";
 import Task from "./Task/Task";
 import { useDispatch } from "react-redux";
 import {
-  addBoardTask,
-  addTaskToAnotherList
-} from "../../../store/board/actions";
+  addTaskStart,
+  addTaskToAnotherList,
+  deleteListStart
+} from '../../../store/board/actions';
 import closeImg from '../../../assets/images/close-pic.png';
 
-const BoardTask = ({ list, tasks, boardID }) => {
+const BoardTask = ({ list, tasks, boardID, listID }) => {
   const dispatch = useDispatch();
   const [taskTitle, setTaskTitle] = useState("");
 
   const checkIfEnterKeyPressed = event => {
     if (event.key === "Enter") {
-      if (taskTitle) dispatch(addBoardTask(boardID, list.id, taskTitle));
+      if (taskTitle) dispatch(addTaskStart({boardID, listID: list.id, title: taskTitle}));
       event.target.value = "";
       setTaskTitle("");
     }
@@ -35,8 +36,8 @@ const BoardTask = ({ list, tasks, boardID }) => {
     dispatch(addTaskToAnotherList(task, listID, initialListID, boardID));
   };
 
-  const onDeleteBtnClick = id => {
-
+  const onDeleteBtnClick = (boardID, listID) => {
+    dispatch(deleteListStart({boardID, listID}))
   }
 
   return (
@@ -49,7 +50,7 @@ const BoardTask = ({ list, tasks, boardID }) => {
         <img
           src={closeImg}
           alt="close-pic"
-          onClick={() => onDeleteBtnClick('1')}
+          onClick={() => onDeleteBtnClick(boardID, list.id)}
         />
       </div>
       <p className="boardtask__text">{list.title}</p>
@@ -60,7 +61,7 @@ const BoardTask = ({ list, tasks, boardID }) => {
         onKeyPress={checkIfEnterKeyPressed}
         onChange={event => setTaskTitle(event.target.value)}
       />
-   {/*   {tasks.length > 0 ? (
+      {tasks && list.id === listID ? (
         tasks.map(task => {
           return (
             <Task
@@ -75,7 +76,7 @@ const BoardTask = ({ list, tasks, boardID }) => {
         })
       ) : (
         <p className="boardtask__no-tasks">No tasks yet...</p>
-      )}*/}
+      )}
     </div>
   );
 };

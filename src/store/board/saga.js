@@ -8,14 +8,14 @@ import {
   fetchBoardByIdError,
   fetchBoardByIdSuccess,
   deleteBoardSuccess,
-  deleteBoardError, addListSuccess, addListError
+  deleteBoardError, addListSuccess, addListError, deleteListSuccess, deleteListError, addTaskSuccess, addTaskError
 } from './actions';
 import {
   addBoardQuery,
   deleteBoardQuery,
   fetchBoardByIdQuery,
   fetchBoardsQuery,
-  addListQuery
+  addListQuery, deleteListQuery, addTaskQuery
 } from '../../api/boardQueries';
 
 function* fetchBoards() {
@@ -68,10 +68,33 @@ function* addListToBoard({payload}) {
   }
 }
 
+function* deleteListFromBoard({payload}) {
+  try {
+    const response = yield call(deleteListQuery, payload);
+
+    yield put(deleteListSuccess(response));
+  } catch (error) {
+    yield put(deleteListError(error))
+  }
+}
+
+function* addTaskToList({payload}) {
+  try {
+    const response = yield call(addTaskQuery, payload);
+
+    yield put(addTaskSuccess(response));
+  } catch (error) {
+    yield put(addTaskError(error))
+  }
+}
+
+
 export default function* boardSaga() {
   yield takeLatest(types.FETCH_BOARDS_START, fetchBoards);
   yield takeLatest(types.FETCH_BOARD_BY_ID_START, fetchBoardById);
   yield takeEvery(types.ADD_BOARD_START, createBoard);
   yield takeEvery(types.DELETE_BOARD_START, deleteBoard);
   yield takeEvery(types.ADD_LIST_START, addListToBoard);
+  yield takeEvery(types.DELETE_LIST_START, deleteListFromBoard);
+  yield takeEvery(types.ADD_TASK_START, addTaskToList);
 }
