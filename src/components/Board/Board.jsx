@@ -9,7 +9,7 @@ import { addListStart, fetchBoardByIdStart } from '../../store/board/actions';
 import Loader from '../common/Loader/Loader';
 
 const Board = props => {
-  const {board, isLoading} = useSelector(state => state.board);
+  const {board, lists, isLoading} = useSelector(state => state.board);
   const [isAddedList, setIsAddedList] = useState(false);
   const [listTitle, setListTitle] = useState();
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const Board = props => {
 
   const checkEnterKeyPressed = event => {
     if (event.key === 'Enter') {
-      if (listTitle) dispatch(addListStart(id, listTitle));
+      if (listTitle) dispatch(addListStart({id, listTitle}));
       event.target.value = '';
       setListTitle('');
     }
@@ -36,8 +36,8 @@ const Board = props => {
         <div className="board">
           <p className="board__title">{board && board.title}</p>
           <ul className="board__tasks">
-            {(board && board.lists) &&
-            board.lists.map(list => {
+            {(board && lists) &&
+            lists.map(list => {
               return (
                 <li key={list.id}>
                   <BoardTask list={list} tasks={list.tasks} boardID={id}/>

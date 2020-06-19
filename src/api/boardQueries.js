@@ -49,26 +49,22 @@ export const fetchBoardByIdQuery = async id => {
   return board;
 }
 
-export const addListQuery = async (boardID, title) => {
+export const addListQuery = async ({id, listTitle}) => {
   const newList = {
     id: uuidv4(),
-    title,
+    title: listTitle,
     tasks: []
   };
 
   let firebaseID;
   Object.entries(await getBoards()).forEach(item => {
-    if (item[1].id === boardID) firebaseID = item[0]
+    if (item[1].id === id) firebaseID = item[0]
   })
 
-  console.log(firebaseID);
+  console.log(id, listTitle);
 
-  await axios.post(`/boards/${firebaseID}/lists/${newList.id}`, newList);
-
-  /*const listsRef = database.ref(`/boards.json/${firebaseID}`);
-  console.log(listsRef);
-  await listsRef.child(newList.id).set(JSON.stringify(newList));*/
-  console.log(axios.get(`/boards.json/${firebaseID}`));
-  //return axios.get(`/boards.json/${firebaseID}`);
+  const listsRef = database.ref(`/boards/${firebaseID}`);
+  await listsRef.child(`list_${newList.id}`).set(newList);
+  return fetchBoardByIdQuery(id);
 }
 

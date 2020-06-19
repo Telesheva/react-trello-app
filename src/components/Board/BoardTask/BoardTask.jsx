@@ -7,6 +7,7 @@ import {
   addBoardTask,
   addTaskToAnotherList
 } from "../../../store/board/actions";
+import closeImg from '../../../assets/images/close-pic.png';
 
 const BoardTask = ({ list, tasks, boardID }) => {
   const dispatch = useDispatch();
@@ -34,12 +35,23 @@ const BoardTask = ({ list, tasks, boardID }) => {
     dispatch(addTaskToAnotherList(task, listID, initialListID, boardID));
   };
 
+  const onDeleteBtnClick = id => {
+
+  }
+
   return (
     <div
       className="boardtask"
       onDragOver={e => onDragOverHandler(e)}
       onDrop={e => onTaskDrop(e, list.id)}
     >
+      <div className="close">
+        <img
+          src={closeImg}
+          alt="close-pic"
+          onClick={() => onDeleteBtnClick('1')}
+        />
+      </div>
       <p className="boardtask__text">{list.title}</p>
       <hr />
       <Input
@@ -48,7 +60,7 @@ const BoardTask = ({ list, tasks, boardID }) => {
         onKeyPress={checkIfEnterKeyPressed}
         onChange={event => setTaskTitle(event.target.value)}
       />
-      {tasks.length > 0 ? (
+   {/*   {tasks.length > 0 ? (
         tasks.map(task => {
           return (
             <Task
@@ -63,7 +75,7 @@ const BoardTask = ({ list, tasks, boardID }) => {
         })
       ) : (
         <p className="boardtask__no-tasks">No tasks yet...</p>
-      )}
+      )}*/}
     </div>
   );
 };

@@ -59,7 +59,6 @@ function* deleteBoard({payload}) {
 }
 
 function* addListToBoard({payload}) {
-  console.log('saga!');
   try {
     const response = yield call(addListQuery, payload);
 

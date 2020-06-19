@@ -4,6 +4,17 @@
   background-color: #ffffff;
   box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.5);
   padding: 15px 7px;
+  .close {
+    display: flex;
+    justify-content: flex-end;
+    img {
+      width: 21px;
+      position: absolute;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
   &__text {
     text-transform: uppercase;
     color: #000000;

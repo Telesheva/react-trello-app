@@ -3,6 +3,7 @@ import { types } from "../actionTypes";
 const initialState = {
   boards: [],
   board: null,
+  lists: [],
   isLoading: false,
   error: ''
 };
@@ -32,9 +33,13 @@ export default function boardReducer(state = initialState, action) {
         isLoading: true
       }
     case types.FETCH_BOARD_BY_ID_SUCCESS:
+      const boardFromPayload = Object.entries(action.payload);
+      const listsArr = [];
+      boardFromPayload.forEach(item => item[0].includes('list') && listsArr.push(item[1]));
       return {
         ...state,
         board: action.payload,
+        lists: listsArr,
         isLoading: false
       }
     case types.FETCH_BOARD_BY_ID_ERROR:
@@ -82,9 +87,12 @@ export default function boardReducer(state = initialState, action) {
         isLoading: true
       };
     case types.ADD_LIST_SUCCESS:
+      const data = Object.entries(action.payload);
+      const lists = [];
+      data.forEach(item => item[0].includes('list') && lists.push(item[1]));
       return {
         ...state,
-        board: action.payload,
+        lists,
         isLoading: false
       };
     case types.ADD_LIST_ERROR:
